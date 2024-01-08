@@ -37,3 +37,80 @@ No, no es posible almacenar funciones de manera directa en una estructura, se pu
 **12.Explique por qué es útil y común dividir el código en archivos .hpp, .cpp y main.cpp en C++. Describa el propósito específico de cada tipo de archivo.**  
 Generalmente se divide el código por razones de organización y mantenimiento del mismo, por su naturaleza segmentada, este código es más sencillo de reutilizar, si se ocupa una parte en particular, se puede ir hacía ella y copiarla, no hay que buscar entre un archivo grande y complejo, adicionalmente se reducen las dependencias entre las diferentes partes del código, esto al tener una interfaz clara en los archivos .hpp .  
 El archivo .hpp es el encargado de definir la interfaz, contiene las declaraciones de las clases, estructuras y funciones que se van a utilizar dentro de los otros archivos. El .cpp se encarga de tener las definiciones e implementaciones detalladas de las clases y funciones declaradas en el archivo .hpp, es una especie de expansión o una definición formal de lo presentado inicialmente en el .hpp.     Finalmente, el main es el cuerpo del programa, esta parte es la encargada de llamar a las otras funciones, clases, variables o estructuras definidas en los otros archivos, esta es solo la base sobre la cual colocar todas las funciones y demás aspectos trabajados en los otros archivos.     
+**13.Defina que es el Typecasting en C++ y explique su utilidad. Proporcione ejemplos de situaciones en las que se emplea el Typecasting y cómo se realiza.**  
+El typecasting se refiere al proceso en el cuál se convierte un tipo de variable a otra según sea conveniente, esto puede ser conveniente para cuando se requiera asignar valores entre variables de distintos tipos. Esta herramienta permite una mayor libertad y más comodidad a la hora de trabajar con distintos tipos de datos. Ahora, el typecasting en C puede ser de dos modos principales, explicito e implicito a continuación se presentan ejemplos de ambos.  
+```
+short a=2000;
+int b;
+b=a;
+
+```
+Para el typecasting implícito, se puede hacer directamente de esta manera, sin la necesidad de usar un operador extra, este tipo de typecast es muy util para convertir variables de short a int o de int a float.  
+```
+short a=2000;
+int b;
+b = (int) a;    // c-like cast notation
+b = int (a);    // functional notation 
+```
+Ahora bien, para el typecast explícito, es necesario indicar a qué tipo de variable se quiere cambiar una vez se hace el proceso, esto es más común con cambios que requieren una diferente interpretación del valor .  
+**14.¿Por qué la sentencia goto no es recomendable en programación moderna? Mencione ejemplos de cómo se pueden lograr los mismos resultados sin el uso de goto**  
+Esta secuencia no es recomendada debido a que en la mayoría de ocasiones lleva a hacer código cuyo flujo es difícil de seguir y mantener, generalmente esta herramienta se usaba en el pasado puesto que era lo que se tenía para lógica, no habían otras alternativas para ir de lugares a otros. Ahora bien, otra forma de lograr lo mismo puede ser con los ciclos de while o de for, con los condicionales o con distintos métodos para saber exactamente dónde va a ir el el programa de manera segura siempre.   
+**15.¿Dónde y cómo se guardan las variables que se crean en C++? Explique la diferencia entre el almacenamiento de variables locales y globales**  
+En este lenguaje de programación las variables se crean en distintos específicos de la memoría según sea su ámbito y su duración (estática, dinámica o automática), generalmente se guardan en la RAM. Ahora bien, las variables locales sólo son accesibles dentro del bloque en el que están definidas y existen solo mientras se ejecuta el bloque de código correspondiente, mientras que las variables globales son accesibles desde cualquier lugar del programa.  
+Las variables locales generalmente se almacenan en la pila, lo que permite una asignación y liberación eficientes de memoria. Las variables globales se almacenan en el segmento de datos o BSS, lo que implica una duración más larga y una asignación estática de memoria, puesto que están planeadas para usos más extensos o perduraderos.  
+**16.¿Cuál es la diferencia entre pasar parámetros por valor, por referencia y por puntero?**  
+Cuando se pasa por valor, la información de la variable se almacenan en una dirección de memoria distinta al recibirla en la función, esto implica que cambios a la variable original no va a afectar al parámetro pasado por valor. Este es una especie de copia de un valor pasado.  
+Cuando se pasa por referencia, la variable que se recibe como parámetro en la función apunta exactamente a la misma dirección de memoria que la variable original, si se modifica el parámetro original, también se va a modificar la pasada por referencia. Básicamente se recibe una referencia del valor original del argumento.  
+Cuando se pasa por puntero, básicamente se recibe la dirección en la cuál está guardada esa variable en la memoría, ahora si se hacen modificaciones con el contenido de lo que apunta el puntero, cómo pasa con la de referencia, está también cambiará la original, lo que pasa es que se usa un puntero para acceder y modificar el valor.  
+**17. Cuando se usa un puntero para apuntar a un arreglo en C++, ¿a qué valor o dirección apunta inicialmente? Describa cómo sería la forma de acceder a todos los datos de ese arreglo mediante el puntero.**  
+Inicialmente el puntero apuntará a la dirección en la cuál inicia el arreglo, es decir, la dirección del primer valor ingresado en el mismo. Ahora bien, para acceder a más datos lo que se podría hacer es recorrer el array, para esto se podría o desplazar el puntero o utilizar la notación del array. En este caso puede ser conveniente definir un ciclo for, el cual sea encargado de recorrer el arreglo hasta hasta que la cantidad de valores recorridos sea la máxima cantidad de valores del array, definiendo esto como la variable i. algo como lo siguiente:
+
+meter el código
+
+**18.Explique para qué son empleados los punteros dobles en C++. Proporcione ejemplos de situaciones en las que los punteros dobles son necesarios o beneficiosos.**  
+Los punteros dobles son utilizados cuando se quiere o se necesita saber la ubicación en memoría de otro puntero. Esta herramienta puede venir de ayuda o ser conveniente a la hora de trabajar aspectos como las listas enlazadas, en las cuales donde cada nodo contiene un puntero al siguiente nodo, los punteros dobles son necesarios para modificar los enlaces entre nodos. También pueden ser útiles a la hora de pasar matrices a funciones. Cuando se pasa una matriz a una función y se desea modificar su contenido, se pueden utilizar punteros dobles para reflejar los cambios fuera de la función.  
+**19.¿Cuál es la diferencia entre un break y un continue en los bucles de C++?**  
+Para empezar, la instrucción break termina la instrucción de iteración contenedora más próxima (es decir, los bucles for, foreach, while o do) o la instrucción switch. La instrucción break transfiere el control a la instrucción que hay a continuación de la instrucción finalizada, si existe. Es importante mencionar que en bucles anidados, el break solamente termina el bucle más interno que la contiene.  
+El continue inicia una nueva iteración de la instrucción de iteración contenedora más próxima (es decir, los bucles for, foreach, while o do), se puede usar para saltar a la siguiente iteración del bucle, omitiendo el resto del código dentro del bucle para la iteración actual. Cuando se encuentra la instrucción continue, el control del programa vuelve al inicio del bucle y se evalúa la condición del bucle para la siguiente iteración.  
+**20.¿Para qué se utiliza la directiva #ifndef?**  
+Lo que hace está directiva es que revisa si el token utilizado ha sido definido con anterioridad en un archivo o en un archivo incluido en donde se está utilizando, si no está definido incluye el código en este y se define, si ya está definido no pasa por la directiva y va directamente al else. Esta directiva comprueba si el token dado ha sido #definido anteriormente en el archivo o en un archivo incluido; si no, incluye el código entre este y el cierre #else o, si no hay #else presente, la declaración #endif. #ifndef se usa a menudo para hacer que los archivos de encabezado sean idempotentes definiendo un token una vez que se ha incluido el archivo y verificando que el token no esté configurado en la parte superior de ese archivo.  
+**21. ¿Qué es el puntero this en C++?**  
+El puntero ¨this¨ es un puntero accesible sólo dentro de las funciones miembro no estáticas de un tipo class, struct o unión. Señala al objeto para el que se llama a la función miembro. Las funciones miembro estáticas no tienen un puntero "this". El puntero this apunta a la instancia actual de la clase y permite acceder a los miembros de esa instancia.  
+**22.¿Qué es un puntero nullptr?**  
+El término nullptr representa un valor de puntero nulo. Use un valor de puntero nulo para indicar que un tipo de identificador de objeto, puntero interior o puntero nativo no apunta a un objeto.  
+**23.¿Cuál es la diferencia entre un arreglo y una lista en C++?**  
+Existen varias diferencias entre ambos tipos de estructuras de datos, los arreglos tienen un tamaño fijo dado por el tiempo de compilación, mientras que las listas pueden cambiar su tamaño con el tiempo de ejecución. Los arreglos se almacenan de manera contigua en memoria, mientras que las listas no se almacenan de este modo, los arreglos poseen índices directos por lo tanto son eficientes en el acceso, mientras que las listas son más eficientes en operaciones de inserciones y eliminaciones.  
+**24.¿Qué es una función prototipo?**  
+Una declaración de función precede a la definición de función y especifica el nombre, el tipo devuelto, la clase de almacenamiento y otros atributos de una función. Yendo un poco más lejos, para ser un prototipo, la declaración de función también debe establecer tipos e identificadores para los argumentos de la función. El prototipo tiene la misma forma que la definición de función, excepto que termina con un punto y coma inmediatamente después del paréntesis de cierre y, por consiguiente, no tiene ningún cuerpo.  
+**25.¿Investigue qué es un memory leak?**  
+Este se trata de un error de software que ocurre cuando un bloque de memoria reservada no es liberada en un programa de computación. Comúnmente ocurre porque se pierden todas las referencias a esa área de memoria antes de haberse liberado. En C++ generalmente ocurre cuando los programadores asignan memoria usando la nueva palabra clave y olvidan desasignar la memoria usando la función eliminar () o el operador eliminar []. Una de las mayores pérdidas de memoria se produce en C++ al utilizar un operador de eliminación incorrecto.  
+El operador de eliminación debe usarse para liberar un único espacio de memoria asignado, mientras que el operador de eliminación [] debe usarse para liberar una matriz de valores de datos.  
+**Parte teórica de Automatización**  
+**1.¿Qué suelen contener las variables CC, CFLAGS, CXXFLAGS y LDFLAGS en un makefile?**  
+Estas variables son generalmente utilizadas para asegurar la compilación del programa, para empezar el CC indica el compilador que se vaya a utilizar, por ejemplo, puede ser gcc. Las C flags son utilizadas para contener las opciones de compilación para el compilador, estas pueden incluir indicaciones de optimización o advertencias entre otras. Las CXXflags son similares a las Cflags, solamente que se utilizan específicamente para las opciones de C++ si se usa un compilador de C++. Finalmente, las LDFLAGS son usadas para almacenar las opciones de enlace, como las rutas específicas de las bibliotecas.  
+**2.¿De qué se compone una regla en un Makefile?**  
+Estás se componen de 3 partes o secciones principales, el target u objetivo, las dependencias y las recetas. El objetivo es lo que se desea construir o en ciertos casos actualizar, algo muy común son los ejecutables u un archivo objeto. Las dependencias se tratan de los archivo u objetos de los cuales depende el objetivo actual. Finalmente se tienen las recetas, las cuales corresponden a la serie de comandos utilizados para construir o actualizar un objetivo. 
+**3.Defina qué es un target y cómo se relaciona con sus prerrequisitos**  
+Si bien esto se tocó un poco en el punto anterior, acá se va a clarificar el punto, es importante mencionar que los prerrequisitos también son denominados dependencias. Las dependencias son los archivos requeridos para que se pueda completar el target, que es el resultado o el archivo que se quiere construir con el makefile. Ahora bien, si los prerrequisitos no están actualizados o se modificó alguno desde la última vez que se corrio el make, el make entenderá que el archivo no está actualizado y ejecutará las recetas necesarias para actualizarlo.  
+**4.¿Para qué se utiliza la bandera -I, -c y -o del compilador gcc?**  
+Para empezar, la bandera -I especifica un directorio donde el compilador busca los archivos de encabezados, generalmente es utilizado para hacer rutas de búsqueda adicionales para los encabezados. La bandera -C Indica al compilador que solo realice la fase de compilación, generando archivos objeto (.o) sin realizar la fase de enlace, es útil cuando se compilan archivos fuente individualmente antes de la fase de enlace. Para terminar, se tiene el -o, que se encarga de especificar el nombre del archivo de salida o ejecutable generado por el compilador. Se utiliza para especificar el nombre del archivo de salida.  
+**5.¿Cómo se definen y se utilizan las variables en un Makefile? ¿Qué utilidad tienen?**  
+Para explicar de mejor manera el punto anterior, se proporcionará un poco de código.
+```
+CC = gcc
+CFLAGS = -Wall -O2
+
+mi_programa: mi_programa.o otra_fuente.o
+    $(CC) $(CFLAGS) -o mi_programa mi_programa.o otra_fuente.o
+
+mi_programa.o: mi_programa.c
+    $(CC) $(CFLAGS) -c mi_programa.c
+
+otra_fuente.o: otra_fuente.c
+    $(CC) $(CFLAGS) -c otra_fuente.c
+```
+Para este caso en particular, la variable CC contiene el compilador que se va a utilizar, y CFLAGS las opciones de compilación, aparte, se puede acceder o utilizar la variable con la siguiente sintaxis, “$(variable)”. Adicionalmente, su utilidad radica en la reutilización de código, la facilitación del mantenimiento del código cambiando valores en un solo lugar, y adicionalmente brindan más legibilidad al código realizado.  
+**6.¿Qué utilidad tiene un @ en un Makefile?**  
+Su uso en el make está ligado a la supresión de la impresión de la regla ejecutada actualmente, se usa para mejorar la salida y hacer la ejecución del makefile sea más limpia, eliminando la visualización detallada de los comandos en la salida estándar. Cuando el make ejecuta una regla, se imprime el comando que está siendo ejecutado. Utilizando @, es posible evitar que se muestre el comando en la salida estándar, lo cual es útil para reducir el ruido visual cuando se está construyendo un proyecto.  
+**7.¿Para qué se utiliza .PHONY en un Makefile?**  
+El “.PHONY” en el makefile se usa para especificar objetivos que no representan archivos reales, son más bien acciones que deben de ser realizadas, por ello también se conocen como objetivos phony. La inclusión de estos ayuda a evitar  conflictos con archivos reales que puedan tener el mismo nombre que los objetivos en el Makefile y garantiza que las reglas se ejecuten incluso si hay archivos con el mismo nombre presentes en el sistema de archivos.  
