@@ -40,12 +40,12 @@ void elegirOpcion(){
 }
 
 void juego() {
-    std::cout << "¡Bienvenido al juego de adivinanza!\n";
+    std::cout << "Bienvenido al juego de adivinanza numerica\n";
 
     srand(time(0));
     int numeroSecreto = generarNumeroAleatorio(intervaloMin, intervaloMax);
 
-    int intentos = (intervaloMax - intervaloMin + 1) / 3; // Número de oportunidades (un tercio del intervalo)
+    int intentos = (intervaloMax - intervaloMin) / 3; // Número de oportunidades (un tercio del intervalo)
 
     switch (dif) {
         case 1:
@@ -81,9 +81,31 @@ int generarNumeroAleatorio(int min, int max) {
 }
 
 void modoFacil(int numeroSecreto, int intentos) {
-    // Implementación del modo fácil
+    int intento;
+    while (intentos > 0) {
+        std::cout << "Ingrese su intento: ";
+        std::cin >> intento;
+
+        if (intento == numeroSecreto) {
+            std::cout << "Enhorabuena,ha adivinado el numero.\n";
+            std::cout<< "Saliendo ...\n";
+            exit(0);      
+            return;
+        } else if (intento < numeroSecreto) {
+            std::cout << "El numero es mayor.\n";
+        } else {
+            std::cout << "El numero es menor.\n";
+        }
+
+        intentos--;
+        std::cout << "Le quedan " << intentos << " intentos.\n";
+    }
+    std::cout << "Lo siento, ha agotado tus intentos. El numero secreto era: " << numeroSecreto << ", ha perdido \n";
+    std::cout<< "Saliendo ...\n";
+    exit(0);      
 }
 
+
 void modoDificil(int numeroSecreto, int intentos) {
-    // Implementación del modo difícil
+       
 }
