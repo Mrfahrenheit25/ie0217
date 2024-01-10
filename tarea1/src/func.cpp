@@ -168,9 +168,45 @@ void modoFacil(int numSecreto, int intentos) {
 }
 
 /**
- * @brief Funcion de modo dificil
- * 
+ * @brief Funcion usada para el modo experto
+ * Funcionamiento basico igual al del modo facil, sin embargo cambia la retro alimentacion brindada al 
+ * usuario. Si el valor ingresado es igual al numero aleatorio, el programa indica que el usuario gano y
+ * termina. Si el numero no es el correcto, se calcula cuan diferente es este numero al valor correcto,
+ * dependiendo de la distancia entre ambos, se da uno un otro mensaje para que el usuario tenga una nocion
+ * de que tan cerca esta del valor real.  Si el usuario no logra adivinar los numeros en los intentos dados
+ * el programa revela el numero secreto y seguidamente procede a terminar el programa.
+ * @param Se recibe el parametro del numero secreto definido en la funcioon juego utilizando la funcion de 
+ * generar numero aleatorio
+ * @param Se recibe el numero de intentos calculado en la funcion de juego
  */
 void modoDificil(int numSecreto, int intentos) {
+int intento;
+    while (intentos > 0) {
+        std::cout << "Ingrese su intento: ";
+        std::cin >> intento;
 
+        int diferencia = std::abs(numSecreto - intento);
+
+        if (diferencia == 0) {
+            std::cout << "Enhorabuena,ha adivinado el numero.\n";
+            std::cout<< "Saliendo ...\n";
+            exit(0);      
+            return;
+        } else if (diferencia <= 5) {
+            std::cout << "Y por poquito! Esta muy cerca.\n";
+        } else if (diferencia <= 10) {
+            std::cout << "Se esta cerca.\n";
+        } else if (diferencia <= 20) {
+            std::cout << "No hay suerte, esta lejos.\n";
+        } else {
+            std::cout << "Cero absoluto, esta muy lejos.\n";
+        }
+
+        intentos--;
+        std::cout << "Le quedan " << intentos << " intentos.\n";
+    }
+
+    std::cout << "Lo siento, ha agotado sus intentos. El numero secreto era: " << numSecreto << "\n";
+    std::cout<< "Saliendo ...\n";
+    exit(0);
 }
