@@ -15,7 +15,7 @@ public:
     string genero;
     string estado;
     int cantidadHojas;
-    double precio;
+    int precio;
 
     MaterialLectura(const string& titulo, const string& grupo, const string& tipoMaterial,
                     const string& autor, const string& editorial, const string& genero,
