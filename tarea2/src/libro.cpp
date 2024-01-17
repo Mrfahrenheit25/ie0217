@@ -12,9 +12,9 @@ void Libro::imprimirInformacion() const {
     cout << "Material relacionado: " << materialRelacionado << endl;
 }
 string Libro::longitudLibro() const {
-    if ( 0 < cantidadHojas <= 100) {
+    if (cantidadHojas <= 100) {
         return "Corto";
-    } else if ( 100 < cantidadHojas <= 200) {
+    } else if (cantidadHojas <= 200) {
         return "Mediano";
     } else if( 200 < cantidadHojas) {
         return "Largo";

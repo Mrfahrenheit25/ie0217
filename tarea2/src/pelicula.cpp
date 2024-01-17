@@ -13,9 +13,9 @@ void Pelicula::imprimirInformacion() const {
 }
 
 string Pelicula::longitudPelicula() const {
-    if ( 0 < duracion <= 90) {
+    if (duracion <= 90) {
         return "Corta";
-    } else if ( 90 < duracion <= 150) {
+    } else if (duracion <= 150) {
         return "Mediana";
     } else if(150 < duracion) {
         return "Larga";

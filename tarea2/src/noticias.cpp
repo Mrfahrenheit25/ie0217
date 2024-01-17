@@ -13,9 +13,9 @@ void Noticia::imprimirInformacion() const {
 }
 
 string Noticia::longitudNoticia() const {
-    if ( 0 < cantidadHojas <= 5) {
+    if (cantidadHojas <= 5) {
         return "Corta";
-    } else if ( 5 < cantidadHojas <= 10) {
+    } else if (cantidadHojas <= 10) {
         return "Mediana";
     } else if ( 10 < cantidadHojas) {
         return "Larga";

@@ -23,4 +23,4 @@ public:
     virtual void imprimirInformacion() const;
 };
 
-#endif  // MATERIAL_AUDIOVISUAL_HPP
+#endif  
