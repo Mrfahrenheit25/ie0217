@@ -4,6 +4,9 @@
 **En este archivo se presentan las instrucciones necesarias para la ejecusión de la tarea número 2, posteriormente se presentan las preguntas y respuestas solicitadas en las sección de teoría.**
 
 **Sección de como funciona**
+Para correr el juego, se requiere usar el archivo Makefile, en este caso si se quiere jugar se tiene que usar el comando ya sea make all o mingw32-make all, este lo que hara sera hacer el ejecutable y seguidamente correrlo. Una vez se esta en el juego se sigen las instrucciones para que todo vaya sobre ruedas.  
+Si se quiere eliminar el archivo ejecutable, se puede usar el comando make clean o mingw32-make clean, con esto ya no se podria correr el juego. Si se quiere correr el ejecutable ya creado se puede usar el comando make run o mingw32-make run.  
+Ahora bien, es importante aclarar que la tarea se logro resolver hasta cierta parte, no fue posible implementar de manera adecuada la clase de ordenar marterial ni la de material precio, esto por una falta de tiempo. Ahora bien, el main prueba que las clases y metodos implementados funcionan adecuadamente.  
 
 ### Seguidamente se pasa a la parte de preguntas y respuestas 
 
