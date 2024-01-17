@@ -12,7 +12,7 @@ int main() {
                               "Ficcion", "Disponible", 175, 12500, "Un resumen del libro.", "Otros libros del autor");
 
     Noticia* noticia1 = new Noticia("Saprissa campeon nacional", "Lectura", "Pepito", "El sol",
-                                    "Deportes", "Prestado", 8, 500, "Un resumen de la noticia.", "Noticias relacionadas");
+                                    "Deportes", "Prestado", 12, 500, "Un resumen de la noticia.", "Noticias relacionadas");
 
     Pelicula* pelicula1 = new Pelicula("Inception", "audiovisual", "Christopher Nolan", "Pelicula", "Ciencia Ficcion",
                                        170, "Disponible", 5000 , "Un resumen de la pelicula.", "Peliculas relacionadas ...");
@@ -20,7 +20,7 @@ int main() {
     Podcast* podcast1 = new Podcast("Joe rogan exp 420", "audiovisual", "Joe Rogan", "Podcast", "Variado",
                                     70, "Prestado", 600, "Un resumen del podcast.", "Podcasts relacionados");
 
-    // Verificar si las clases derivadas imprimen correctamente la información
+
     cout << "Informacion del Libro:\n";
     libro1->imprimirInformacion();
     cout << "\nLongitud del Libro: " << libro1->longitudLibro() << "\n\n";
