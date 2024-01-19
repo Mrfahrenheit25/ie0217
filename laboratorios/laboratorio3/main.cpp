@@ -38,13 +38,14 @@ int main(){
 std::cout << "Buscando el contacto Juanito Mora: " << std::endl;
 try {
     std::list<Contacto<std::string>> resultados = agenda.buscarContactos("Juanito Mora");
-
+    // si encuentra algun resultado, lo imprimo en la pantalla, esto si lo que se devuelve no es vacio
     if (!resultados.empty()) {
         std::cout << "Contactos encontrados:" << std::endl;
         for (const auto& contacto : resultados) {
             std::cout << "Nombre: " << contacto.getNombre() << ", Teleono: " << contacto.getTelefono() << ", Email: " << contacto.getEmail() << std::endl;
         }
-    } else {
+    } // si no se encuentran resultados, indica que no se obtienen resultados
+     else {
         std::cout << "No se encontraron contactos." << std::endl;
     }
 } catch (const std::exception& e) {
