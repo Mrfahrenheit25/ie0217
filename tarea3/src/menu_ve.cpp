@@ -4,15 +4,15 @@
 
 
 void mostrarMenu(){
-    // Crear un objeto EmailValidator
+    // Crea un objeto EmailValidator
     EmailVerif emailVerif;
 
-    // Solicitar al usuario que ingrese una dirección de correo electrónico
+    // Solicita al usuario que ingrese un correo electronico
     string userInput;
     cout << "Ingrese una direccion de correo electronico: ";
     cin >> userInput;
 
-    // Validar la dirección de correo electrónico e imprimir el resultado
+    // Valida la direccion e imprime el resultado
     if (emailVerif.verificarEmail(userInput)) {
         cout << "La direccion de correo electronico es valida." << endl;
         cout<< "Saliendo ...\n";
