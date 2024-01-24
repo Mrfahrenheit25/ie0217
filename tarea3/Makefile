@@ -1,7 +1,11 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall
-TARGET = ej 
-SRC = ./src/func.cpp ./src/main.cpp
+
+TARGET_correo = ej2
+TARGET_matriz = ej
+
+SRC_correo = ./src/verif_email.cpp ./src/main_ve.cpp ./src/menu_ve.cpp
+SRC_matriz = ./src/matrix.cpp ./src/main.cpp ./src/operaciones_basicas.cpp ./src/menu.cpp
 
 ifeq ($(OS),Windows_NT)
     RM = del /Q
@@ -11,15 +15,29 @@ else
     TARGET_EXTENSION =
 endif
 
-all: build run
+correo: build_correo run_correo
 
-build: $(TARGET)
+build_correo: $(TARGET_correo)
 
-$(TARGET): $(SRC)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC)
+$(TARGET_correo): $(SRC_correo)
+	$(CXX) $(CXXFLAGS) -o $(TARGET_correo) $(SRC_correo)
 
-run:
-	./$(TARGET)
+run_correo:
+	./$(TARGET_correo)
 
-clean:
-	$(RM) $(TARGET)$(TARGET_EXTENSION)
+clean_correo:
+	$(RM) $(TARGET_correo)$(TARGET_EXTENSION)
+
+
+matriz: build_matriz run_matriz
+
+build_matriz: $(TARGET_matriz)
+
+$(TARGET_matriz): $(SRC_matriz)
+	$(CXX) $(CXXFLAGS) -o $(TARGET_matriz) $(SRC_matriz)
+
+run_matriz:
+	./$(TARGET_matriz)
+
+clean_matriz:
+	$(RM) $(TARGET_matriz)$(TARGET_EXTENSION)
