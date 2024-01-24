@@ -11,7 +11,7 @@ void Matriz<T>::pedirDatos(){
     cout << "Ingrese el numero de columnas: ";
     cin >> columnas;
     if (filas <= 0 || columnas <= 0) {
-        throw invalid_argument("Tamano de matriz invalido.");
+        throw invalid_argument("Tamano de matriz invalido o no se introdujo un numero valido");
     }
     datos.resize(filas, vector<T>(columnas));
     cout << "Ingrese los datos de la matriz:" << endl;
