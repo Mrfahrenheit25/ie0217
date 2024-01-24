@@ -3,6 +3,7 @@
 #include "operaciones_basicas.hpp"
 #include "menu.hpp"
 
+
 void mostrarMenu(){
     // Mostrar el menu principal
     cout << "Bienvenido a la aplicacion de operaciones con matrices" << endl;
@@ -139,15 +140,14 @@ void mostrarMenu(){
                 break;
             }
         }
-        if (opc == 3) {
-            cout<< "Saliendo ...\n";
-            exit(0);
-            }
+        if (opc == 3){ 
+            cout<< "Aun no funciona la opcion\n";
+        }
         if (opc == 4) {
             cout<< "Saliendo ...\n";
             exit(0);
             }
-    } catch (const std::exception& e) {
+    } catch (const exception& e) {
         cerr << "Error: " << e.what() << endl;
     }
 
