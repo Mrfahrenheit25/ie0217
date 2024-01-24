@@ -4,7 +4,7 @@
 #include "menu.hpp"
 
 void mostrarMenu(){
-    // Display menu to choose data type
+    // Mostrar el menu principal
     cout << "Bienvenido a la aplicacion de operaciones con matrices" << endl;
     cout << "Elija el tipo de dato o si desea salir del programa:" << endl;
     cout << "1. Entero" << endl;
@@ -16,7 +16,7 @@ void mostrarMenu(){
     try {
         if (opc == 1) {
 
-        // Integer matrix
+        // Matrz de enteros
         Matriz<int> matriz1, matriz2;
 
         cout << "Ingrese datos para la Matriz 1:" << endl;
@@ -28,7 +28,7 @@ void mostrarMenu(){
         matriz1.mostrarMatriz();
         matriz2.mostrarMatriz();
 
-        // Display matrix operations menu
+        // Mostrar el menu de operaciones
         cout << "Elija la operacion deseada:" << endl;
         cout << "1. Suma" << endl;
         cout << "2. Resta" << endl;
@@ -36,8 +36,9 @@ void mostrarMenu(){
 
         std::cin >> elec;
     
-        // Perform matrix operation based on user choice
+        // Hacer la operacion segun sea necesario, se llaman a las funciones adecuadas
             switch (elec) {
+                // Caso de la suma
                 case 1:
                 if (OperacionesBasicas<int>::validarSumaResta(matriz1, matriz2)) {
                 Matriz<int> suma_resultado = OperacionesBasicas<int>::suma(matriz1, matriz2);
@@ -49,6 +50,7 @@ void mostrarMenu(){
                     cout<< "Saliendo ...\n";
                     exit(0);
                 }
+                // Caso de la resta
                 case 2:
                 if (OperacionesBasicas<int>::validarSumaResta(matriz1, matriz2)) {
                 Matriz<int> resta_resultado = OperacionesBasicas<int>::resta(matriz1, matriz2);
@@ -60,6 +62,7 @@ void mostrarMenu(){
                     cout<< "Saliendo ...\n";
                     exit(0);
                 }
+                // Caso de la multiplicacion
                 case 3:
                 if (OperacionesBasicas<int>::validarMultiplicacion(matriz1, matriz2)) {
                 Matriz<int> multiplicacion_resultado = OperacionesBasicas<int>::multiplicacion(matriz1, matriz2);
@@ -75,6 +78,7 @@ void mostrarMenu(){
                     break;
                 }
             }
+        // Ahora se trabaja con numeros flotantes 
         if (opc == 2) {
         
         Matriz<float> matriz1, matriz2;
@@ -88,7 +92,7 @@ void mostrarMenu(){
         matriz1.mostrarMatriz();
         matriz2.mostrarMatriz();
 
-        // Display matrix operations menu
+        //Mostrar el menu de operaciones
         cout << "Elija la operacion deseada:" << endl;
         cout << "1. Suma" << endl;
         cout << "2. Resta" << endl;
@@ -96,7 +100,7 @@ void mostrarMenu(){
 
         std::cin >> elec;
     
-        // Perform matrix operation based on user choice
+        // Hacer el calculo segun la opcion elegida
         switch (elec) {
             case 1:
             if (OperacionesBasicas<float>::validarSumaResta(matriz1, matriz2)) {
@@ -135,6 +139,10 @@ void mostrarMenu(){
                 break;
             }
         }
+        if (opc == 3) {
+            cout<< "Saliendo ...\n";
+            exit(0);
+            }
         if (opc == 4) {
             cout<< "Saliendo ...\n";
             exit(0);

@@ -1,15 +1,18 @@
 #include "operaciones_basicas.hpp"
 
+// Se verifica si se puede hacer la suma o la resta.
 template <typename T>
 bool OperacionesBasicas<T>::validarSumaResta(const Matriz<T>& matriz1, const Matriz<T>& matriz2) {
    return matriz1.getFilas() == matriz2.getFilas() && matriz1.getColumnas() == matriz2.getColumnas();
 }
 
+// Se verifica si se puede hacer la multiplicacion
 template <typename T>
 bool OperacionesBasicas<T>::validarMultiplicacion(const Matriz<T>& matriz1, const Matriz<T>& matriz2) {
     return matriz1.columnas == matriz2.filas;
 }
 
+// Se define la forma de hacer la suma, se hace respecto a las reglas del algebra lineal
 template <typename T>
 Matriz<T> OperacionesBasicas<T>::suma(const Matriz<T>& matriz1, const Matriz<T>& matriz2) {
     if (!validarSumaResta(matriz1, matriz2)) {
@@ -29,7 +32,7 @@ Matriz<T> OperacionesBasicas<T>::suma(const Matriz<T>& matriz1, const Matriz<T>&
 
     return resultado;
 }
-
+// Se define la resta de forma muy similar a la suma
 template <typename T>
 Matriz<T> OperacionesBasicas<T>::resta(const Matriz<T>& matriz1, const Matriz<T>& matriz2) {
     if (!validarSumaResta(matriz1, matriz2)) {
@@ -49,7 +52,7 @@ Matriz<T> OperacionesBasicas<T>::resta(const Matriz<T>& matriz1, const Matriz<T>
 
     return resultado;
 }
-
+// Finalmente se define la multiplicacion, usando la metodologia correcta segun algebra lineal
 template <typename T>
 Matriz<T> OperacionesBasicas<T>::multiplicacion(const Matriz<T>& matriz1, const Matriz<T>& matriz2) {
     if (!validarMultiplicacion(matriz1, matriz2)) {
