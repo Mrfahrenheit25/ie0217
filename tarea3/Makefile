@@ -5,7 +5,7 @@ TARGET_correo = ej2
 TARGET_matriz = ej
 
 SRC_correo = ./src/verif_email.cpp ./src/main_ve.cpp ./src/menu_ve.cpp
-SRC_matriz = ./src/matrix.cpp ./src/main.cpp ./src/operaciones_basicas.cpp ./src/menu.cpp
+SRC_matriz = ./src/matrix.hpp ./src/main.cpp ./src/operaciones_basicas.hpp ./src/menu.hpp
 
 ifeq ($(OS),Windows_NT)
     RM = del /Q

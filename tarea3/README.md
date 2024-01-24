@@ -4,9 +4,9 @@
 **En este archivo se presentan las instrucciones necesarias para la ejecusión de la tarea número 3, posteriormente se presentan las preguntas y respuestas solicitadas en las sección de teoría.**
 
 **Sección de como funciona**
-Para correr el programa, se requiere usar el archivo Makefile, en este caso si se quiere jugar se tiene que usar el comando ya sea make all o mingw32-make all, este lo que hara sera hacer el ejecutable y seguidamente correrlo. Una vez se esta en el juego se sigen las instrucciones para que todo vaya sobre ruedas.  
-Si se quiere eliminar el archivo ejecutable, se puede usar el comando make clean o mingw32-make clean, con esto ya no se podria correr el juego. Si se quiere correr el ejecutable ya creado se puede usar el comando make run o mingw32-make run.  
-Ahora bien, es importante aclarar que la tarea se logro resolver hasta cierta parte, no fue posible implementar de manera adecuada la clase de ordenar marterial ni la de material precio, esto por una falta de tiempo. Ahora bien, el main prueba que las clases y metodos implementados funcionan adecuadamente.  
+Para correr el programa, se requiere usar el archivo Makefile, en este caso si se quiere acceder al correo o a las matrices se debe de usar un comando u otro ya sea make correo o mingw32-make correo, ambos para acceder al correo,y mingw32-make matriz para la matriz. Este lo que hara sera hacer el ejecutable y seguidamente correrlo. Una vez se esta en el juego se sigen las instrucciones para que todo vaya sobre ruedas.  
+Si se quiere eliminar el archivo ejecutable, se puede usar el comando make clean_matriz o mingw32-make clean_matriz, ambos para la matriz. Para el correo seria mingw32-make clean_correo, con esto ya no se podria correr el juego. Si se quiere correr el ejecutable ya creado se puede usar el comando make run_matriz o mingw32-make run_matriz.  Para el correo es mingw32-make run_correo.
+Ahora bien, es importante aclarar que la tarea se logro resolver hasta cierta parte, no fue posible implementar de manera adecuada la clase de numeros complejos por falta de tiempo.  
 
 ### Seguidamente se pasa a la parte de preguntas y respuestas 
 **Definición de Templates: Explique el concepto de templates en C++ y proporcione un ejemplo simple**  
