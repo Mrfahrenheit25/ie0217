@@ -24,7 +24,7 @@ class Alergia:
             self.alergias[nombre] = valor
 
 
-    def imprimirInfo(self):
+    def mostrar(self):
         print('\n Esta es la base de datos de las alergias, seleccione una opcion :')
         print('1. Imprimir una sola alergia')
         print('2. Consultar por todas las alergias en la base de datos')
@@ -35,7 +35,7 @@ class Alergia:
         if(opc == '1'):
             alergia = input("introduzca la alergia a consultar: ")
             try: 
-                print('para la aergia a ', alergia, 'el codigo es ', self.alergias[alergia])
+                print('para la alergia a ', alergia, 'el codigo es ', self.alergias[alergia])
             except:
                  print('la alergia no esta en la base de datos')
         elif (opc == '2'):
