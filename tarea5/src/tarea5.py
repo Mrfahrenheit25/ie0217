@@ -201,16 +201,16 @@ class AnalisisDatos:
         for valor, repeticiones in contador.items():
             yield valor, repeticiones
 
-class GraficoViajes:
+class GraficoViaje_mpl:
     def __init__(self, ruta_archivo):
         """
-        Inicializa la clase GraficoViajes con la ruta del archivo CSV que contiene los datos.
+        Se inicializa la clase GraficoViaje con la ruta del archivo CSV que contiene los datos.
         """
         self.ruta_archivo = ruta_archivo
 
     def generar_graf_bar(self):
         """
-        Genera un grafico de barras que muestra cuantos viajes hizo cada compania de viaje.
+        Se genera un grafico de barras que muestra cuantos viajes hizo cada compania de viaje.
         """
         # Función generadora para obtener los datos de compañías y viajes
         def obtener_datos():
@@ -235,39 +235,45 @@ class GraficoViajes:
 
         # Mostrar el gráfico
         plt.show()
-    def generar_graf_disper(self):
-        """
-        Genera un grafico de dispersión que muestra la relacion entre companias de viaje y total de viajes.
-        """
-        # Cargar los datos desde el archivo CSV, omitiendo las líneas 24 y 33
-        datos = pd.read_csv(self.ruta_archivo, skiprows=[23, 28, 29, 32, 34, 38, 41, 45, 48, 50])
 
-        # Extraer compañías de viaje y total de viajes
-        companias = datos.iloc[:, 0]
-        viajes = datos.iloc[:, 1]
+    def generar_graf_lin(self):
+        """
+        Se genera un grafico de lineas que muestra la relación entre aerolineas y total de pasajeros.
+        """
+        # Funcion generadora para obtener los datos de aerolineas y pasajeros
+        def obtener_datos():
+            # Cargar los datos desde el archivo CSV, omitiendo las líneas 24 y 33
+            datos = pd.read_csv(self.ruta_archivo, skiprows=[23, 28, 29, 32, 34, 38, 41, 45, 48, 50])
 
-        # Crear el gráfico de dispersión
+            # Se itera sobre los datos y generar las aerolineas y pasajeros
+            for index, fila in datos.iterrows():
+                yield fila.iloc[0], fila.iloc[2]
+
+        aerolineas, pasajeros = zip(*obtener_datos())
+
+        #Se crea el grafico de lineas
         plt.figure(figsize=(10, 6))
-        plt.scatter(companias, viajes, color='skyblue')
-        plt.xlabel('Compañía de Viaje')
-        plt.ylabel('Total de Viajes')
-        plt.title('Relación entre Compañía de Viaje y Total de Viajes')
+        plt.plot(aerolineas, pasajeros, marker='o', color='skyblue', linestyle='-')
+        plt.xlabel('Aerolínea')
+        plt.ylabel('Total de Pasajeros')
+        plt.title('Total de Pasajeros por Aerolínea')
         plt.xticks(rotation=45, ha='right')
         plt.tight_layout()
 
         # Mostrar el gráfico
         plt.show()
+
 if __name__ == "__main__":
 
     archivo_csv = 'datos.csv'
 
-    # Instanciar la clase CargarData
+    # Se instancia la clase CargarData
     cargador = CargarData(archivo_csv)
 
-    # Cargar los datos desde el archivo CSV
+    # Se carga los datos desde el archivo CSV
     cargador.cargar_data()
 
-    # Verificar si los datos se cargaron correctamente
+    # Se verifica si los datos se cargaron correctamente
     if cargador.dataframe is not None:
         # Eliminar las filas
         cargador.eliminar_filas(0, 1543)       
@@ -290,8 +296,9 @@ if __name__ == "__main__":
         # Genero el informe con los datos de la suma de los pasajeros, peso del cargamento y total de los viajes
         analizador.generar_informe(4,'datos_importantes.csv')
         data_impo = 'datos_importantes.csv'
-        graf1 = GraficoViajes(data_impo)
+        graf1 = GraficoViaje_mpl(data_impo)
         graf1.generar_graf_bar()
+        graf1.generar_graf_lin()
         # Imprimir resultados
         print("El promedio de la distancia recorrida por los vuelos es de:", prom_dist)
         print("Desviacion estandar de la distancia recorrida por los vuelos es de :", desvest_dist)
