@@ -1,6 +1,6 @@
 import pandas as pd
 import math
-
+import matplotlib.pyplot as plt
 class CargarData:
     def __init__(self, ruta_archivo):
         """
@@ -15,7 +15,7 @@ class CargarData:
          relevante para el proyecto.
         """
         try:
-            # Intenta cargar el archivo CSV en un DataFrame
+            # Se intenta cargar el archivo CSV en un DataFrame
             self.dataframe = pd.read_csv(self.ruta_archivo)
             print("Datos cargados con exito")
             
@@ -48,9 +48,9 @@ class CargarData:
             nombre_archivo (str): Nombre del archivo CSV de salida.
         """
         try:
-            # Guarda el DataFrame en un archivo CSV
+            # Se guarda el DataFrame en un archivo CSV
             self.dataframe.to_csv(nombre_archivo, index=False)
-            print(f"DataFrame guardado como '{nombre_archivo}' exitosamente.")
+            print(f"DataFrame procesado guardado como '{nombre_archivo}' exitosamente.")
         except Exception as e:
             print(f"Error al guardar el DataFrame como '{nombre_archivo}': {e}")
 
@@ -75,16 +75,16 @@ class CargarData:
 class AnalisisDatos:
     def __init__(self, dataframe):
         """
-        Inicializa la clase AnalisisDatos con un DataFrame.
+        Se inicializa la clase AnalisisDatos con un DataFrame.
         """
         self.dataframe = dataframe
 
     def calcular_promedio_columna(self, numero_columna):
         """
-        Calcula el promedio de una columna específica del DataFrame.
+        Se calcula el promedio de una columna del DataFrame.
         
         Args:
-            numero_columna (int): Número de columna para calcular el promedio.
+            numero_columna (int): Numero de columna para calcular el promedio.
         
         Returns:
             float: Promedio de la columna especificada.
@@ -99,13 +99,13 @@ class AnalisisDatos:
 
     def calcular_desviacion_estandar_columna(self, numero_columna):
         """
-        Calcula la desviación estándar de una columna específica del DataFrame.
+        Se calcula la desviacion estandar de una columna del DataFrame.
         
         Args:
-            numero_columna (int): Número de columna para calcular la desviación estándar.
+            numero_columna (int): Numero de columna para calcular la desviacion estandar.
         
         Returns:
-            float: Desviación estándar de la columna especificada.
+            float: Desviacion estandar de la columna especificada.
         """
         promedio = self.calcular_promedio_columna(numero_columna)
         suma_cuadrados_diferencias = 0
@@ -119,10 +119,10 @@ class AnalisisDatos:
 
     def calcular_moda_columna(self, numero_columna):
             """
-            Calcula la moda de una columna específica del DataFrame.
+            Se calcula la moda de una columna especifica del DataFrame.
             
             Args:
-                numero_columna (int): Número de columna para calcular la moda.
+                numero_columna (int): Numero de columna para calcular la moda.
             
             Returns:
                 object: Moda de la columna especificada.
@@ -146,12 +146,47 @@ class AnalisisDatos:
         filas_seleccionadas.to_csv(nombre_archivo_salida, index=False)
         print(f"Filas seleccionadas guardadas en '{nombre_archivo_salida}'.")
 
-    def contar_repeticiones_por_valor(self, numero_columna):
+    def generar_informe(self, numero_columna, nombre_archivo_salida):
         """
-        Utiliza un generador para contar la cantidad de veces que se repite un valor en una columna específica.
+        Se genera un informe en un nuevo archivo CSV con la cantidad de vuelos, el total de pasajeros
+        transportados y el total de peso para cada valor en una columna especifica del DataFrame.
         
         Args:
-            numero_columna (int): Número de columna para contar las repeticiones.
+            numero_columna (int): Numero de columna para generar el informe.
+            nombre_archivo_salida (str): Nombre del archivo CSV de salida.
+        """
+        # Función generadora para calcular totales
+        def calcular_totales():
+            totales = {}
+            for index, fila in self.dataframe.iterrows():
+                valor = fila.iloc[numero_columna]
+                pasajeros = fila.iloc[0]
+                peso = fila.iloc[1]
+
+                if valor in totales:
+                    totales[valor][0] += 1
+                    totales[valor][1] += pasajeros
+                    totales[valor][2] += peso
+                else:
+                    totales[valor] = [1, pasajeros, peso]
+
+            # Escribir los resultados en el archivo CSV
+            with open(nombre_archivo_salida, 'w') as archivo_salida:
+                archivo_salida.write("aerolinea,total de viajes,total pasajeros trans,total de peso trans\n")
+                for aerolinea, (viajes, pasajeros, peso) in totales.items():
+                    archivo_salida.write(f"{aerolinea},{viajes},{pasajeros},{peso}\n")
+
+            print(f"Informe generado y guardado en '{nombre_archivo_salida}'.")
+
+        # Ejecutar la función generadora
+        calcular_totales()
+
+    def contar_repeticiones_por_valor(self, numero_columna):
+        """
+        Se usa un generador para contar la cantidad de veces que se repite un valor en una columna 
+        
+        Args:
+            numero_columna (int): Numero de columna para contar las repeticiones.
         
         Yields:
             tuple: Tupla que contiene el valor y la cantidad de repeticiones.
@@ -166,8 +201,64 @@ class AnalisisDatos:
         for valor, repeticiones in contador.items():
             yield valor, repeticiones
 
+class GraficoViajes:
+    def __init__(self, ruta_archivo):
+        """
+        Inicializa la clase GraficoViajes con la ruta del archivo CSV que contiene los datos.
+        """
+        self.ruta_archivo = ruta_archivo
 
+    def generar_graf_bar(self):
+        """
+        Genera un grafico de barras que muestra cuantos viajes hizo cada compania de viaje.
+        """
+        # Función generadora para obtener los datos de compañías y viajes
+        def obtener_datos():
+            # Cargar los datos desde el archivo CSV, omitiendo las líneas 24 y 33
+            datos = pd.read_csv(self.ruta_archivo, skiprows=[23, 28, 29, 32, 34, 38, 41, 45, 48, 50])
+
+            # Iterar sobre los datos y generar las compañías y viajes
+            for index, fila in datos.iterrows():
+                yield fila.iloc[0], fila.iloc[1]
+
+        # Obtener compañías y viajes utilizando el generador
+        companias, viajes = zip(*obtener_datos())
+
+        # Crear el gráfico de barras
+        plt.figure(figsize=(10, 6))
+        plt.bar(companias, viajes, color='skyblue')
+        plt.xlabel('Compania de viaje')
+        plt.ylabel('Total de viajes')
+        plt.title('Total de viajes por Compania de viaje')
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+
+        # Mostrar el gráfico
+        plt.show()
+    def generar_graf_disper(self):
+        """
+        Genera un grafico de dispersión que muestra la relacion entre companias de viaje y total de viajes.
+        """
+        # Cargar los datos desde el archivo CSV, omitiendo las líneas 24 y 33
+        datos = pd.read_csv(self.ruta_archivo, skiprows=[23, 28, 29, 32, 34, 38, 41, 45, 48, 50])
+
+        # Extraer compañías de viaje y total de viajes
+        companias = datos.iloc[:, 0]
+        viajes = datos.iloc[:, 1]
+
+        # Crear el gráfico de dispersión
+        plt.figure(figsize=(10, 6))
+        plt.scatter(companias, viajes, color='skyblue')
+        plt.xlabel('Compañía de Viaje')
+        plt.ylabel('Total de Viajes')
+        plt.title('Relación entre Compañía de Viaje y Total de Viajes')
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+
+        # Mostrar el gráfico
+        plt.show()
 if __name__ == "__main__":
+
     archivo_csv = 'datos.csv'
 
     # Instanciar la clase CargarData
@@ -184,20 +275,28 @@ if __name__ == "__main__":
         nuevo_archivo_csv = 'datos_modificados.csv'
         # Guardar y mostrar los datos modificados
         cargador.reproducir_datos(nuevo_archivo_csv)
-
         lec_nuevo_archivo = pd.read_csv(nuevo_archivo_csv)
         # Instanciar la clase AnalisisDatos
         analizador = AnalisisDatos(lec_nuevo_archivo)
-        # Calcular los datos importantes de la columna 2
-        desviacion_estandar_columna_2 = analizador.calcular_desviacion_estandar_columna(2)
-        prom_columna_2 = analizador.calcular_promedio_columna(2)
-        moda_columna_2 = analizador.calcular_moda_columna(4)
+        # Calcular los datos importantes
+        desvest_dist= analizador.calcular_desviacion_estandar_columna(2)
+        prom_dist = analizador.calcular_promedio_columna(2)
+        moda_comp = analizador.calcular_moda_columna(4)
+        moda_orig = analizador.calcular_moda_columna(5)
+        moda_dest = analizador.calcular_moda_columna(6)
+        moda_mes = analizador.calcular_moda_columna(7)
+        # Selecciono las filas de la compania con mas viajes
         analizador.seleccionar_filas_por_valor(4, "Southwest Airlines Co.", 'filas_interes.csv')
-
+        # Genero el informe con los datos de la suma de los pasajeros, peso del cargamento y total de los viajes
+        analizador.generar_informe(4,'datos_importantes.csv')
+        data_impo = 'datos_importantes.csv'
+        graf1 = GraficoViajes(data_impo)
+        graf1.generar_graf_bar()
         # Imprimir resultados
-        print("El promedio de la columna 2:", prom_columna_2)
-        print("Desviación estándar de la columna 2:", desviacion_estandar_columna_2)
-        print("Moda de la columna 2:", moda_columna_2)
-        print("Cantidad de repeticiones por valor en la columna 4:")
-        for valor, repeticiones in analizador.contar_repeticiones_por_valor(4):
-            print(f"{valor}: {repeticiones}")
+        print("El promedio de la distancia recorrida por los vuelos es de:", prom_dist)
+        print("Desviacion estandar de la distancia recorrida por los vuelos es de :", desvest_dist)
+        print("Moda de la compania de viaje:", moda_comp)
+        print("Moda del origen de los viajes:", moda_orig)
+        print("Moda del destino de los viajes:", moda_dest)
+        print("Numero del mes con mas viajes: ", moda_mes)
+
