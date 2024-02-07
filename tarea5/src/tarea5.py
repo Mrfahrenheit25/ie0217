@@ -322,7 +322,7 @@ class GrafSeaborn:
 
 if __name__ == "__main__":
 
-    archivo_csv = 'datos.csv'
+    archivo_csv = 'src/datos.csv'
 
     # Se instancia la clase CargarData
     cargador = CargarData(archivo_csv)
