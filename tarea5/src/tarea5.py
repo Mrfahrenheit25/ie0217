@@ -284,7 +284,7 @@ class GrafSeaborn:
         """
         self.ruta_archivo = ruta_archivo
 
-    def generar_grafico_barras(self):
+    def generar_graf_bar(self):
         """
         Se genera un grafico de barras utilizando Seaborn.
         """
@@ -297,6 +297,25 @@ class GrafSeaborn:
         plt.ylabel(df.columns[1])
         plt.title('Grafico de barras')
         plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+
+        plt.show()
+    def generar_graf_bar_mes(self):
+        """
+        Se genera un grafico de barras utilizando Seaborn para contar la cantidad de veces que se repite cada numero de mes.
+        """
+        
+        df = pd.read_csv(self.ruta_archivo)
+            
+        # Contar la cantidad de veces que se repite cada numero de mes
+        conteo_meses = df['MONTH'].value_counts().sort_index()
+
+        # Crear el grafico de barras
+        plt.figure(figsize=(10, 6))
+        sns.barplot(x=conteo_meses.index, y=conteo_meses.values)
+        plt.xlabel('Mes')
+        plt.ylabel('Cantidad de repeticiones')
+        plt.title('Cantidad de repeticiones por mes')
         plt.tight_layout()
 
         plt.show()
@@ -342,7 +361,10 @@ if __name__ == "__main__":
         graf1.generar_graf_lin()
         arch_clas = 'clases.csv'
         graf2 = GrafSeaborn(arch_clas)
-        graf2.generar_grafico_barras()
+        graf2.generar_graf_bar()
+        arch_fila = 'filas_interes.csv'
+        graf3 = GrafSeaborn(arch_fila)
+        graf3.generar_graf_bar_mes()
         # Se imprimen resultados
         print("El promedio de la distancia recorrida por los vuelos es de:", prom_dist)
         print("Desviacion estandar de la distancia recorrida por los vuelos es de :", desvest_dist)
