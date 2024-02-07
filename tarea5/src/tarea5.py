@@ -1,6 +1,8 @@
 import pandas as pd
 import math
 import matplotlib.pyplot as plt
+import seaborn as sns
+
 class CargarData:
     def __init__(self, ruta_archivo):
         """
@@ -181,25 +183,37 @@ class AnalisisDatos:
         # Ejecutar la función generadora
         calcular_totales()
 
-    def contar_repeticiones_por_valor(self, numero_columna):
+    def contar_repeticiones_por_clase(self, archivo_salida):
         """
-        Se usa un generador para contar la cantidad de veces que se repite un valor en una columna 
-        
+        Utiliza un generador para contar la cantidad de veces que se repite cada valor en la columna "clase" y guarda los resultados en un archivo CSV.
+
         Args:
-            numero_columna (int): Numero de columna para contar las repeticiones.
-        
-        Yields:
-            tuple: Tupla que contiene el valor y la cantidad de repeticiones.
+            archivo_salida (str): Nombre del archivo CSV de salida.
         """
+        # Generador para contar las repeticiones de la columna "clase"
+        def generador_repeticiones():
+            for valor in self.dataframe['CLASS']:
+                yield valor
+
+        # Contador de repeticiones
         contador = {}
-        for valor in self.dataframe.iloc[:, numero_columna]:
+        for valor in generador_repeticiones():
             if valor in contador:
                 contador[valor] += 1
             else:
                 contador[valor] = 1
 
-        for valor, repeticiones in contador.items():
-            yield valor, repeticiones
+        # Convertir el diccionario de conteo en un DataFrame
+        df_contador = pd.DataFrame(list(contador.items()), columns=['clase', 'repeticiones'])
+
+        # Guardar el DataFrame en un archivo CSV
+        try:
+            df_contador.to_csv(archivo_salida, index=False)
+            print(f"Repeticiones guardadas en '{archivo_salida}' exitosamente.")
+        except Exception as e:
+            print(f"Error al guardar las repeticiones en '{archivo_salida}': {e}")
+
+
 
 class GraficoViaje_mpl:
     def __init__(self, ruta_archivo):
@@ -263,6 +277,30 @@ class GraficoViaje_mpl:
         # Mostrar el gráfico
         plt.show()
 
+class GrafSeaborn:
+    def __init__(self, ruta_archivo):
+        """
+        Se inicializa la clase GraficoSeaborn con la ruta del archivo CSV que contiene los datos.
+        """
+        self.ruta_archivo = ruta_archivo
+
+    def generar_grafico_barras(self):
+        """
+        Se genera un grafico de barras utilizando Seaborn.
+        """
+        df = pd.read_csv(self.ruta_archivo)
+            
+        # Crear el grafico de barras
+        plt.figure(figsize=(10, 6))
+        sns.barplot(x=df.iloc[:, 0], y=df.iloc[:, 1])
+        plt.xlabel(df.columns[0])
+        plt.ylabel(df.columns[1])
+        plt.title('Grafico de barras')
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+
+        plt.show()
+
 if __name__ == "__main__":
 
     archivo_csv = 'datos.csv'
@@ -291,15 +329,21 @@ if __name__ == "__main__":
         moda_orig = analizador.calcular_moda_columna(5)
         moda_dest = analizador.calcular_moda_columna(6)
         moda_mes = analizador.calcular_moda_columna(7)
-        # Selecciono las filas de la compania con mas viajes
+        # Se seleccionan las filas de la compania con mas viajes
         analizador.seleccionar_filas_por_valor(4, "Southwest Airlines Co.", 'filas_interes.csv')
-        # Genero el informe con los datos de la suma de los pasajeros, peso del cargamento y total de los viajes
+        # Se genera el informe con los datos de la suma de los pasajeros, peso del cargamento y total de los viajes
         analizador.generar_informe(4,'datos_importantes.csv')
+        # Se ven los datos de la clase en un archivo aparte
+        analizador.contar_repeticiones_por_clase('clases.csv')
+        # Se hacen los graficos correspondientes
         data_impo = 'datos_importantes.csv'
         graf1 = GraficoViaje_mpl(data_impo)
         graf1.generar_graf_bar()
         graf1.generar_graf_lin()
-        # Imprimir resultados
+        arch_clas = 'clases.csv'
+        graf2 = GrafSeaborn(arch_clas)
+        graf2.generar_grafico_barras()
+        # Se imprimen resultados
         print("El promedio de la distancia recorrida por los vuelos es de:", prom_dist)
         print("Desviacion estandar de la distancia recorrida por los vuelos es de :", desvest_dist)
         print("Moda de la compania de viaje:", moda_comp)
