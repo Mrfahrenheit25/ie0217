@@ -8,7 +8,21 @@ Para correr el programa, se requiere usar el archivo Makefile, en este caso como
 al usar el comando mingw32-make se correra todos los codigos.
 
 **Sección de análisis**  
-
+Ahora bein, en lo que respecta al analisis de resultados, es importante ver los coeficientes y el rendimiento de cada uno de los métodos, para comenzar se tienen los graficos de la relación entre los años y el precio en relación a su regression, estos se presentan acontinuación:  
+![grafico1](RLPA.png)  
+![grafico2](RNPA.png)  
+Con estos graficos en mente es bueno revisar los parametros de rendimiento, se puede ver que los valores en muchos casos son muy similares, sin embargo, los valores del método lineal son levemente más altos. Se puede ver que la regression polinomial tiene valores MSE más bajos, las predicciones están más cerca de los valores reales, además, al tener un coeficiente de determinación más cercano a 1, se adecuá un tanto mejor a ala curva seleccionada (Aúnque no es del todo cercano a 1). Finalmente los valores del error cuadrático medio son menores en el análisis polinomial, por lo tanto, se puede decir que la relación entre los datos queda mejor del modo polinomial.  
+Seguidamente se presentan los graficos de la siguiente regression:  
+![grafico1](RLKP.png)  
+![grafico2](RNKP.png)  
+EN este caso es el analísis de la relación de los precios y el kilometraje, en este caso, se puede ver que de igual forma al punto anterior, casi todos los valores del análisis polinomial son más bajos que el análsis lineal. Se puede ver que la regression polinomial tiene valores MSE más bajos, las predicciones están más cerca de los valores reales, además, al tener un coeficiente de determinación más cercano a 1, se adecuá un tanto mejor a ala curva seleccionada (Aúnque no es del todo cercano a 1). Finalmente los valores del error cuadrático medio son menores en el análisis polinomial, por lo tanto, se puede decir que la relación entre los datos queda mejor del modo polinomial.    
+Ahora se toca el tema del clustering. Las agrupaciones de datos se hacen con los mismos datos que en la parte de regresion, el precio y los años, y los kilometros y el precio. Con esto claro, para el precio y los años se tienen los siguiente gráficos:  
+![grafico1](CPA.png)   
+![grafico2](CLPA.png)   
+En ellos se puede ver que el método del codo indica que la cantidad adecuada de clusters es de 5 o 4. Ahora propiamente en los clusters, se ve la agrupación de los datos, son 4 clusters, en los cuales el precio dicta la agrupación. Como se ve el grupo consta de carros viejos baratos, carros no tan viejos baratos, y carros nuevos muy caros o baratos, no se ven carros viejos caros por ejemplo. Su coeficiente de silueta es de 0.41, con esto claro se pasa al cluster de kilometraje vs precio.  
+![grafico1](CKP.png)   
+![grafico2](CLKP.png)   
+Ahora, la cantidad adecuada de clusters según el método del codo es de 5, este es uno más que el anterior, adicionalmente, se tiene que los datos vienen dictados por el kilometraje. Se puede ver que los carros más caros generalmente no tienen mucho recorrido, y son un grupo en sí, los carros de precio medio de igual forma no tienen muchos kilometros. Ahora bien, los precios bajos son algo interesante, puesto que de precios bajos hay carros con poco recorrido, recorrido medio y alto recorrido, todos los rangos en un solo precio. Su coeficiente de silueta es del 0.39.
 ### Seguidamente se pasa a la parte de preguntas y respuestas 
 **Regresión**   
 1.	¿Qué es la represión lineal y cómo se diferencia de la regresión no lineal?  
