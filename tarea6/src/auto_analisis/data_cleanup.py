@@ -56,6 +56,5 @@ class ManejoDeDatos:
         # Revisar tipos de datos
         self.revisar_tipos_datos()
 
-# Instanciar la clase y ejecutar las tareas
-manejo_datos = ManejoDeDatos("CAR DETAILS FROM CAR DEKHO.csv")
+manejo_datos = ManejoDeDatos("./src/auto_analisis/CAR DETAILS FROM CAR DEKHO.csv")
 manejo_datos.ejecutar_tareas()

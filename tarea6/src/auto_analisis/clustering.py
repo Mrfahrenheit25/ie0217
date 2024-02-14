@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
 
 # Se hace la carga del archivo CSV
-data = pd.read_csv("CAR DETAILS FROM CAR DEKHO_rev.csv")
+data = pd.read_csv("./src/auto_analisis/CAR DETAILS FROM CAR DEKHO_rev.csv")
 
 # Se eligen las caracteristicas para clustering (años y precios)
 X = data.iloc[:, [1, 2]].values

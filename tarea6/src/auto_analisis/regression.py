@@ -8,10 +8,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
 # Se carga el archivo CSV
-data = pd.read_csv("CAR DETAILS FROM CAR DEKHO_rev.csv")
-
-
-
+data = pd.read_csv("./src/auto_analisis/CAR DETAILS FROM CAR DEKHO_rev.csv")
 
 # Parte de los años del carro y su relación con el precio
 
