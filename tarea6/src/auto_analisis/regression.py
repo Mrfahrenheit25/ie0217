@@ -22,7 +22,7 @@ y = data.iloc[:, 2].values.reshape(-1, 1)  # Precio
 
 '''Se dividen los datos en conjuntos de entrenamiento y prueba, con las pruebas en un tamano de 
 20%, y la seleccion pseudo random del modelo'''
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=39)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Se hace el modelo de regresion lineal y se entrena con los datos seleccionados
 regresion_model = LinearRegression()
@@ -98,7 +98,7 @@ y = data.iloc[:, 2].values.reshape(-1, 1)  # Precio
 
 '''Se dividen los datos en conjuntos de entrenamiento y prueba, con las pruebas en un tamano de 
 20%, y la seleccion pseudo random del modelo'''
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=39)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Se hace el modelo de regresion lineal y se entrena con los datos sleccionados
 regresion_model = LinearRegression()
