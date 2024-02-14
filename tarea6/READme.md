@@ -1,10 +1,13 @@
 # ie0217
 ## Este es el archivo README de Aurelio Cordoba Valerio, C12326
 
-**En este archivo se presentan las instrucciones necesarias para la ejecusión de la tarea número 5 y el analisis de los datos de los graficos, posteriormente se presentan las preguntas y respuestas solicitadas en las sección de teoría.**
+**En este archivo se presentan las instrucciones necesarias para la ejecusión de la tarea número 6 y el analisis de los datos de los datos de regresion, posteriormente se presentan las preguntas y respuestas solicitadas en las sección de teoría.**
 
 **Sección de como funciona**
-Para correr el programa, se requiere usar el archivo Makefile, en este caso como se trata de python, el makefile no es tan extenso y su facilidad de manejar es considerable. Para empezar, al usar el comando mingw32-make se correran los dos codigos, primero la parte 1 de la tarea, y posteriormente la parte 2. ahora bien, si se quiere correr solamente un archivo, se debe de usar mingw32-make run1 para correr solamente la primera parte del codigo, la parte de los graficos, y mingw32-make run2 para correr la parte de las operaciones de numpy.
+Para correr el programa, se requiere usar el archivo Makefile, en este caso como se trata de python, el makefile no es tan extenso y su facilidad de manejar es considerable.Sin embargo, antes de eso es necesario hacer bueno uso del archivo kaggle.json, el archivo se encuentra en la carpeta de src, es necesario colocar el archivo en la carpeta de C:\Users\'nombre_usuario'\.kaggle para que se hagan los llamados adecuadamente. Con esto claro, se debe de iniciar,
+
+
+ al usar el comando mingw32-make se correran los dos codigos, primero la parte 1 de la tarea, y posteriormente la parte 2. ahora bien, si se quiere correr solamente un archivo, se debe de usar mingw32-make run1 para correr solamente la primera parte del codigo, la parte de los graficos, y mingw32-make run2 para correr la parte de las operaciones de numpy.
 
 **Sección de análisis**  
 
@@ -50,9 +53,14 @@ Para comenzar, se utiliza la palabra clave import seguida del nombre del paquete
 import nombre_del_paquete.nombre_del_modulo
 from nombre_del_paquete import nombre_del_modulo
 ```
-4.	¿qué es la variable __all__ en el archivo __init__.py y cuál es su propósito?
+4.	¿qué es la variable __all__ en el archivo __init__.py y cuál es su propósito?  
 Esta variable es una lista que especifica qué módulos serán importados cuando se use el asterisco (*) en una importación desde ese paquete o cuando se quieran importar “todos” los métodos del paquete. Su propósito es controlar qué partes del paquete se consideran "públicas" y están disponibles para ser importadas de esta manera. Esto ayuda a controlar qué elementos son accesibles desde fuera del paquete.
 Obtenido de: https://www.codingem.com/what-is-init-py-file-in-python/  
-5.	¿Cuál es la ventaja de organizar el código en paquetes y módulos en Python?
-Dentro de las ventajas de usar este método se tiene la reutilización del código, la estructuración adecuada y coherente, el mantenimiento y el uso del código por separación en pequeñas partes y no en solo una grande.
+5.	¿Cuál es la ventaja de organizar el código en paquetes y módulos en Python?  
+Dentro de las ventajas de usar este método se tiene la reutilización del código, la estructuración adecuada y coherente, el mantenimiento y el uso del código por separación en pequeñas partes y no en solo una grande.  
+GET: Se utiliza para recuperar datos de un recurso específico en el servidor. No tiene efectos secundarios y solo debe usarse para lecturas.  
+POST: Se utiliza para enviar datos al servidor para crear un nuevo recurso. Por ejemplo, enviar datos de un formulario.  
+PUT: Se utiliza para actualizar un recurso existente en el servidor. El cliente envía los datos actualizados al servidor para que los modifique.  
+DELETE: Se utiliza para eliminar un recurso existente en el servidor. El cliente envía una solicitud para eliminar el recurso especificado.  
+Estos verbos son parte de la especificación HTTP y proporcionan una forma estándarizada de realizar acciones sobre recursos a través de una API.  
 
