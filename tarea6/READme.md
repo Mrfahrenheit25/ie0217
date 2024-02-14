@@ -5,9 +5,7 @@
 
 **Sección de como funciona**
 Para correr el programa, se requiere usar el archivo Makefile, en este caso como se trata de python, el makefile no es tan extenso y su facilidad de manejar es considerable.Sin embargo, antes de eso es necesario hacer bueno uso del archivo kaggle.json, el archivo se encuentra en la carpeta de src, es necesario colocar el archivo en la carpeta de C:\Users\'nombre_usuario'\.kaggle para que se hagan los llamados adecuadamente. Con esto claro, se debe de iniciar,
-
-
- al usar el comando mingw32-make se correran los dos codigos, primero la parte 1 de la tarea, y posteriormente la parte 2. ahora bien, si se quiere correr solamente un archivo, se debe de usar mingw32-make run1 para correr solamente la primera parte del codigo, la parte de los graficos, y mingw32-make run2 para correr la parte de las operaciones de numpy.
+al usar el comando mingw32-make se correra todos los codigos.
 
 **Sección de análisis**  
 
